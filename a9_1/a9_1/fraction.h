@@ -10,18 +10,19 @@
 #define fraction_h
 
 class Fraction {
-public:
-    Fraction::Fraction();
-    Fraction::Fraction(int inNumerator, int inDenominator);
-    void print();
-    Fraction multipliedBy(Fraction f2);
-    Fraction dividedBy(Fraction f2);
-    Fraction addedTo(Fraction f2);
-    Fraction subtract(Fraction f2);
-    bool isEqualTo(Fraction f2);
-private:
-    int numerator;
-    int denominator;
+    public:
+        Fraction();
+        Fraction(int inNumerator, int inDenominator);
+        void print() const;
+        Fraction multipliedBy(const Fraction &f2) const;
+        Fraction dividedBy(const Fraction &f2) const;
+        Fraction addedTo(const Fraction &f2) const;
+        Fraction subtract(const Fraction &f2) const;
+        bool isEqualTo(const Fraction &f2) const;
+    private:
+        int numerator;
+        int denominator;
+        void simplify();
 };
 
 

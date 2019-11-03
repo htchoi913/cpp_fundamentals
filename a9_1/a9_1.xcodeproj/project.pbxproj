@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		079C4D0A236E1A6A00C7EE90 /* a9_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079C4D09236E1A6A00C7EE90 /* a9_1.cpp */; };
+		079C4D0A236E1A6A00C7EE90 /* fraction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079C4D09236E1A6A00C7EE90 /* fraction.cpp */; };
+		079C4D12236E4F8700C7EE90 /* client_program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079C4D11236E4F8700C7EE90 /* client_program.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,8 +25,9 @@
 
 /* Begin PBXFileReference section */
 		079C4D06236E1A6A00C7EE90 /* a9_1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = a9_1; sourceTree = BUILT_PRODUCTS_DIR; };
-		079C4D09236E1A6A00C7EE90 /* a9_1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = a9_1.cpp; sourceTree = "<group>"; };
+		079C4D09236E1A6A00C7EE90 /* fraction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fraction.cpp; sourceTree = "<group>"; };
 		079C4D10236E236100C7EE90 /* fraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fraction.h; sourceTree = "<group>"; };
+		079C4D11236E4F8700C7EE90 /* client_program.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = client_program.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 		079C4D08236E1A6A00C7EE90 /* a9_1 */ = {
 			isa = PBXGroup;
 			children = (
-				079C4D09236E1A6A00C7EE90 /* a9_1.cpp */,
+				079C4D09236E1A6A00C7EE90 /* fraction.cpp */,
+				079C4D11236E4F8700C7EE90 /* client_program.cpp */,
 				079C4D10236E236100C7EE90 /* fraction.h */,
 			);
 			path = a9_1;
@@ -120,7 +123,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				079C4D0A236E1A6A00C7EE90 /* a9_1.cpp in Sources */,
+				079C4D0A236E1A6A00C7EE90 /* fraction.cpp in Sources */,
+				079C4D12236E4F8700C7EE90 /* client_program.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

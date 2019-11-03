@@ -18,8 +18,11 @@
  */
 
 #include <iostream>
+#include <cassert>
 #include "fraction.h"
 using namespace std;
+
+const int STARTING_FACTOR = 2;
 
 
 Fraction::Fraction()
@@ -39,7 +42,7 @@ Fraction::Fraction(int inNumerator, int inDenominator)
 
 
 
-void Fraction::print()
+void Fraction::print() const
 {
     cout << numerator << "/" << denominator;
 }
@@ -49,7 +52,7 @@ void Fraction::print()
 
 
 
-Fraction Fraction::multipliedBy(Fraction f2)
+Fraction Fraction::multipliedBy(const Fraction &f2) const
 {
     int tempNumerator;
     int tempDenominator;
@@ -59,6 +62,8 @@ Fraction Fraction::multipliedBy(Fraction f2)
     
     Fraction tempFraction(tempNumerator, tempDenominator);
     
+    tempFraction.simplify();
+    
     return tempFraction;
 }
 
@@ -67,15 +72,16 @@ Fraction Fraction::multipliedBy(Fraction f2)
 
 
 
-Fraction Fraction::dividedBy(Fraction f2)
+Fraction Fraction::dividedBy(const Fraction &f2) const
 {
-    Fraction tempFraction;
     int tempNumerator;
     int tempDenominator;
     
     tempNumerator = numerator * f2.denominator;
     tempDenominator = denominator * f2.numerator;
-    tempFraction.set(tempNumerator, tempDenominator);
+    Fraction tempFraction(tempNumerator, tempDenominator);
+    
+    tempFraction.simplify();
     
     return tempFraction;
 }
@@ -85,15 +91,16 @@ Fraction Fraction::dividedBy(Fraction f2)
 
 
 
-Fraction Fraction::addedTo(Fraction f2)
+Fraction Fraction::addedTo(const Fraction &f2) const
 {
-    Fraction tempFraction;
     int tempNumerator;
     int tempDenominator;
     
     tempNumerator = (numerator * f2.denominator) + (denominator * f2.numerator);
     tempDenominator = (denominator * f2.denominator);
-    tempFraction.set(tempNumerator, tempDenominator);
+    Fraction tempFraction(tempNumerator, tempDenominator);
+    
+    tempFraction.simplify();
     
     return tempFraction;
 }
@@ -103,15 +110,18 @@ Fraction Fraction::addedTo(Fraction f2)
 
 
 
-Fraction Fraction::subtract(Fraction f2)
+Fraction Fraction::subtract(const Fraction &f2) const
 {
-    Fraction tempFraction;
+    
     int tempNumerator;
     int tempDenominator;
     
     tempNumerator = (numerator * f2.denominator) - (denominator * f2.numerator);
     tempDenominator = (denominator *f2.denominator);
-    tempFraction.set(tempNumerator, tempDenominator);
+    
+    Fraction tempFraction(tempNumerator, tempDenominator);
+    
+    tempFraction.simplify();
     
     return tempFraction;
 }
@@ -121,7 +131,7 @@ Fraction Fraction::subtract(Fraction f2)
 
 
 
-bool Fraction::isEqualTo(Fraction f2)
+bool Fraction::isEqualTo(const Fraction &f2) const
 {
     return numerator * f2.denominator == denominator * f2.numerator;
 }
@@ -131,74 +141,19 @@ bool Fraction::isEqualTo(Fraction f2)
 
 
 
-int main()
+void Fraction::simplify()
 {
-    Fraction f1;
-    Fraction f2;
-    Fraction result;
+    int lowerNum = numerator;
     
-    f1.set(9, 8);
-    f2.set(2, 3);
+    if (lowerNum > denominator) {
+        lowerNum = denominator;
+    }
     
-    cout << "The product of ";
-    f1.print();
-    cout << " and ";
-    f2.print();
-    cout << " is ";
-    result = f1.multipliedBy(f2);
-    result.print();
-    cout << endl;
-    
-    cout << "The quotient of ";
-    f1.print();
-    cout << " and ";
-    f2.print();
-    cout << " is ";
-    result = f1.dividedBy(f2);
-    result.print();
-    cout << endl;
-    
-    
-    cout << "The sum of ";
-    f1.print();
-    cout << " and ";
-    f2.print();
-    cout << " is ";
-    result = f1.addedTo(f2);
-    result.print();
-    cout << endl;
-    
-    cout << "The difference of ";
-    f1.print();
-    cout << " and ";
-    f2.print();
-    cout << " is ";
-    result = f1.subtract(f2);
-    result.print();
-    cout << endl;
-    
-    if (f1.isEqualTo(f2)) {
-        cout << "The two Fractions are equal." << endl;
-    } else {
-        cout << "The two Fractions are not equal." << endl;
+    for (int count = STARTING_FACTOR; count < lowerNum; count++) {
+        if (numerator % count == 0 && denominator % count == 0 ) {
+                numerator = numerator / count;
+                denominator = denominator / count;
+        }
     }
 }
-
-
-
-
-
-
-/*
- 
- Program Output:
- 
- The product of 9/8 and 2/3 is 18/24
- The quotient of 9/8 and 2/3 is 27/16
- The sum of 9/8 and 2/3 is 43/24
- The difference of 9/8 and 2/3 is 11/24
- The two Fractions are not equal.
- Program ended with exit code: 0
- 
- */
 
