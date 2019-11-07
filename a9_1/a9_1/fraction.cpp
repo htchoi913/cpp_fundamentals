@@ -1,19 +1,10 @@
 /*
  
- Henry Choi - W78250701
- City College of San Francisco
- CS110B - Fundamentals of Programming: C++
- Professor David Harden
- File Name: a8_1.cpp
- Homework Assignment #8
- Due Date: October 28, 2019
- 
- This program uses the class Function to set and print fractions.
- Additionally, the program can be used to output mathematic
- calculations between two fractions. These calculations include
- addition, subtraction, multiplication, and division. Lastly, the
- program will also compare to fractions to see if they are equal
- or not.
+ Class Invariant: A Fraction object has uses two int data numbers
+ to store fractions. Numerator and denominator is used to store
+ the appropriate fraction numbers. The assert function was used to
+ prevent the client program from providing 0 as a denominator value
+ in the parameterized constructor.
  
  */
 
@@ -22,21 +13,27 @@
 #include "fraction.h"
 using namespace std;
 
-const int STARTING_FACTOR = 2;
 
 
 Fraction::Fraction()
 {
     numerator = 0;
     denominator = 1;
+    
+
 }
 
 
 
 Fraction::Fraction(int inNumerator, int inDenominator)
 {
+  
     numerator = inNumerator;
     denominator = inDenominator;
+    
+    assert(denominator != 0);
+
+    simplify();
 }
 
 
@@ -139,21 +136,26 @@ bool Fraction::isEqualTo(const Fraction &f2) const
 
 
 
-
+// The private member function simplifies the calling object by
+// dividing the numerator and denominator with the greatest common
+// denominator.
 
 void Fraction::simplify()
 {
+    int greatestComDen = 1;
     int lowerNum = numerator;
     
     if (lowerNum > denominator) {
         lowerNum = denominator;
     }
     
-    for (int count = STARTING_FACTOR; count < lowerNum; count++) {
+    for (int count = 1; count <= lowerNum; count++) {
         if (numerator % count == 0 && denominator % count == 0 ) {
-                numerator = numerator / count;
-                denominator = denominator / count;
+            greatestComDen = count;
         }
     }
+        
+    numerator = numerator / greatestComDen;
+    denominator = denominator / greatestComDen;
+    
 }
-
